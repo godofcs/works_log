@@ -27,6 +27,13 @@ class RegisterForm(FlaskForm):
     submit = SubmitField("Submit")
 
 
+class LoginForm(FlaskForm):
+    email = EmailField('Почта', validators=[DataRequired()])
+    password = PasswordField('Пароль', validators=[DataRequired()])
+    remember_me = BooleanField('Запомнить меня')
+    submit = SubmitField('Войти')
+
+
 def main():
     db_session.global_init("db/mars.sqlite")
     app.run()
@@ -67,6 +74,18 @@ def register():
         else:
             return "Пароли не совпадают"
     return render_template("register.html", title="Регистрация", form=form)
+
+
+@app.route("/authenticate", methods=["GET", "POST"])
+def authenticate():
+    form = LoginForm()
+    if request.method == "POST":
+        session = db_session.create_session()
+        user = session.query(users.User).filter(users.User == form.email)
+        for i in user:
+            pass
+        return redirect("/")
+    return render_template("login.html", title="Авторизация", form=form)
 
 
 @login_manager.user_loader
