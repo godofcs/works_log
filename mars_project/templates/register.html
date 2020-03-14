@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 align="center">Register Form</h1>
+<form action="" method="post" novalidate>
+    {% for pole in form if pole.name != "csrf_token" and pole.name != "submit" %}
+    <p>
+        {{ pole.label() }}<br>
+        {{ pole() }}
+    </p>
+    {% endfor %}
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+</form>
+{% endblock %}

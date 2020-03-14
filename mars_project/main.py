@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request
 from flask_login import LoginManager
 from data import db_session
 from data import users, jobs
@@ -46,8 +46,8 @@ def log():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     form = RegisterForm()
-    if form.validate_on_submit():
-        if form.password.data == form.password_again.data:
+    if request.method == "POST":
+        if form.password.data == form.password_again.data and form.password.data != "":
             session = db_session.create_session()
             user = users.User()
             user.surname = form.surname.data
