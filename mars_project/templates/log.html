@@ -4,13 +4,13 @@
 <h1 align="center">Works log</h1>
 {% for job in jobs %}
 <h2>Action # {{job.id}}</h2>
-<table>
+<table bordercolor="black" border="0" class="table table-hover">
     <tr>
-        <th bgcolor="D3D3D3">Title of activity</th>
-        <th bgcolor="D3D3D3">Team leader</th>
-        <th bgcolor="D3D3D3">Duration</th>
-        <th bgcolor="D3D3D3">List of collaborators</th>
-        <th bgcolor="D3D3D3">Is finished</th>
+        <th width="100%" bgcolor="D3D3D3">Title of activity</th>
+        <th width="100%" bgcolor="D3D3D3">Team leader</th>
+        <th width="100%" bgcolor="D3D3D3">Duration</th>
+        <th width="100%" bgcolor="D3D3D3">List of collaborators</th>
+        <th width="100%" bgcolor="D3D3D3">Is finished</th>
     </tr>
     <tr>
         <td bgcolor="9370DB">{{ job.job }}</td>
